@@ -1,0 +1,587 @@
+/* ==========================================================
+   VALORES Y SERVICIOS — HOJA DE ESTILOS
+   Paleta basada en los colores institucionales del colegio:
+   verde, rojo y blanco, con neutros de apoyo.
+   ========================================================== */
+
+:root{
+  /* --- Color --- */
+  --verde-oscuro:#173F32;
+  --verde:#2E7D53;
+  --verde-claro:#6FAE86;
+  --verde-tinte:#EEF6F1;
+  --rojo:#B5342B;
+  --rojo-tinte:#FBECEA;
+  --blanco:#FFFFFF;
+  --crema:#F6F8F6;
+  --tinta:#182420;
+  --tinta-suave:#54655D;
+  --linea:#DDE6E0;
+
+  /* --- Tipografía --- */
+  --f-display:'Space Grotesk', sans-serif;
+  --f-texto:'Inter', sans-serif;
+  --f-datos:'IBM Plex Mono', monospace;
+
+  /* --- Ritmo --- */
+  --radio:18px;
+  --radio-chico:10px;
+  --sombra: 0 10px 30px -12px rgba(23,63,50,0.18);
+  --sombra-hover: 0 16px 40px -14px rgba(23,63,50,0.28);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:var(--f-texto);
+  color:var(--tinta);
+  background:var(--crema);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+h1,h2,h3{font-family:var(--f-display);margin:0;}
+p{margin:0;}
+a{text-decoration:none;color:inherit;}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+}
+
+:focus-visible{
+  outline:3px solid var(--rojo);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+/* ================= HEADER ================= */
+.header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:var(--verde-oscuro);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  transition:padding .25s ease;
+}
+.header__inner{
+  max-width:1100px;
+  margin:0 auto;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.header__logo{
+  height:38px;
+  width:auto;
+}
+.header__cta{
+  font-family:var(--f-display);
+  font-weight:600;
+  font-size:0.88rem;
+  color:var(--verde-oscuro);
+  background:var(--blanco);
+  padding:10px 18px;
+  border-radius:100px;
+  white-space:nowrap;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.header__cta:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px -6px rgba(0,0,0,0.35);
+}
+.header__cta:active{transform:translateY(0);}
+
+/* ================= HERO ================= */
+.hero{
+  position:relative;
+  background:
+    radial-gradient(120% 140% at 15% -10%, #24593F 0%, var(--verde-oscuro) 55%);
+  color:var(--blanco);
+  padding:64px 20px 96px;
+  overflow:hidden;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:auto -20% -60% -20%;
+  height:280px;
+  background:var(--crema);
+  border-radius:50% 50% 0 0 / 100% 100% 0 0;
+}
+.hero__content{
+  position:relative;
+  z-index:2;
+  max-width:640px;
+  margin:0 auto;
+  text-align:center;
+}
+.hero__eyebrow{
+  font-family:var(--f-datos);
+  font-size:0.78rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--verde-claro);
+  margin-bottom:18px;
+}
+.hero__title{
+  font-size:clamp(2.6rem, 9vw, 4.4rem);
+  line-height:0.98;
+  font-weight:700;
+  letter-spacing:-0.02em;
+  margin-bottom:20px;
+}
+.hero__subtitle{
+  font-size:1.05rem;
+  line-height:1.6;
+  color:rgba(255,255,255,0.82);
+  max-width:440px;
+  margin:0 auto 36px;
+}
+.hero__cta{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:var(--rojo);
+  color:var(--blanco);
+  font-family:var(--f-display);
+  font-weight:600;
+  font-size:1rem;
+  padding:15px 28px;
+  border-radius:100px;
+  box-shadow:0 14px 30px -10px rgba(181,52,43,0.55);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.hero__cta:hover{
+  transform:translateY(-3px);
+  box-shadow:0 18px 36px -8px rgba(181,52,43,0.6);
+}
+.hero__cta svg{animation:bob 2.4s ease-in-out infinite;}
+@keyframes bob{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(3px);}
+}
+
+/* --- Sello decorativo --- */
+.hero__sello{
+  position:absolute;
+  top:26px;
+  right:-30px;
+  width:150px;
+  height:150px;
+  opacity:0.9;
+  animation:girar 40s linear infinite;
+}
+@media (max-width:640px){
+  .hero__sello{width:108px;height:108px;top:18px;right:-22px;}
+}
+@keyframes girar{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}
+.sello__svg{width:100%;height:100%;}
+.sello__ring-outer{fill:none;stroke:rgba(255,255,255,0.35);stroke-width:1.5;}
+.sello__ring-inner{fill:none;stroke:rgba(255,255,255,0.5);stroke-width:1;stroke-dasharray:2 4;}
+.sello__text{
+  font-family:var(--f-datos);
+  font-size:6.6px;
+  letter-spacing:1.5px;
+  fill:rgba(255,255,255,0.75);
+}
+.sello__check{
+  fill:none;
+  stroke:var(--blanco);
+  stroke-width:5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* ================= SECCIONES GENERALES ================= */
+.section{
+  padding:76px 20px;
+}
+.section__inner{
+  max-width:1100px;
+  margin:0 auto;
+}
+.section__inner--centro{text-align:center;max-width:640px;}
+.section__eyebrow{
+  font-family:var(--f-datos);
+  font-size:0.78rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--verde);
+  margin-bottom:10px;
+}
+.section__eyebrow--rojo{color:var(--rojo);}
+.section__title{
+  font-size:clamp(1.7rem, 4vw, 2.3rem);
+  letter-spacing:-0.01em;
+  margin-bottom:14px;
+  max-width:600px;
+}
+.section__subtitle{
+  font-family:var(--f-datos);
+  font-size:0.98rem;
+  color:var(--tinta-suave);
+  margin-bottom:34px;
+}
+
+/* Reveal on scroll */
+.reveal{
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity .6s ease, transform .6s ease;
+}
+.reveal.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ================= TARJETAS "COMPROBANTE" ================= */
+.recibos-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-top:36px;
+}
+@media (max-width:860px){
+  .recibos-grid{grid-template-columns:1fr;}
+}
+
+.recibo{
+  position:relative;
+  background:var(--blanco);
+  border-radius:var(--radio);
+  padding:28px 26px 24px;
+  box-shadow:var(--sombra);
+  border:1px solid var(--linea);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.recibo:hover{
+  transform:translateY(-5px);
+  box-shadow:var(--sombra-hover);
+}
+/* perforación tipo comprobante */
+.recibo::before{
+  content:"";
+  position:absolute;
+  left:24px;
+  right:24px;
+  top:0;
+  height:0;
+  border-top:2px dashed var(--linea);
+}
+.recibo__icono{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  background:var(--verde-tinte);
+  color:var(--verde);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:18px;
+}
+.recibo__nombre{
+  font-family:var(--f-display);
+  font-weight:600;
+  font-size:1.02rem;
+  margin-bottom:10px;
+  color:var(--tinta);
+}
+.recibo__valor{
+  font-family:var(--f-datos);
+  font-weight:700;
+  font-size:1.9rem;
+  color:var(--verde-oscuro);
+  line-height:1.1;
+  letter-spacing:-0.01em;
+}
+.recibo__detalle{
+  font-size:0.88rem;
+  color:var(--tinta-suave);
+  margin-top:8px;
+}
+
+/* ================= CUOTA EXTRAORDINARIA ================= */
+.extraordinaria-card{
+  position:relative;
+  background:var(--verde-oscuro);
+  color:var(--blanco);
+  border-radius:24px;
+  padding:40px 32px;
+  overflow:hidden;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.extraordinaria-card::before{
+  content:"";
+  position:absolute;
+  right:-60px;
+  top:-60px;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  border:1px dashed rgba(255,255,255,0.18);
+}
+.extraordinaria__texto{position:relative;z-index:1;max-width:460px;}
+.extraordinaria__etiqueta{
+  font-family:var(--f-datos);
+  font-size:0.78rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--verde-claro);
+  margin-bottom:12px;
+}
+.extraordinaria__titulo{
+  font-size:1.5rem;
+  font-weight:600;
+  margin-bottom:12px;
+  line-height:1.25;
+}
+.extraordinaria__nota{
+  font-size:0.92rem;
+  color:rgba(255,255,255,0.75);
+  line-height:1.55;
+}
+.extraordinaria__valor-wrap{
+  position:relative;
+  z-index:1;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.16);
+  border-radius:16px;
+  padding:22px 30px;
+  text-align:center;
+}
+.extraordinaria__valor{
+  font-family:var(--f-datos);
+  font-weight:700;
+  font-size:2.4rem;
+}
+.extraordinaria__valor-detalle{
+  font-size:0.82rem;
+  color:rgba(255,255,255,0.7);
+  margin-top:6px;
+}
+
+/* ================= INCLUYE ================= */
+.section--incluye{background:var(--verde-tinte);}
+.incluye-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-top:8px;
+}
+@media (max-width:860px){
+  .incluye-grid{grid-template-columns:1fr;}
+}
+.incluye-card{
+  background:var(--blanco);
+  border-radius:var(--radio);
+  padding:26px;
+  box-shadow:var(--sombra);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.incluye-card:hover{transform:translateY(-5px);box-shadow:var(--sombra-hover);}
+.incluye-card__icono{
+  width:46px;height:46px;
+  border-radius:50%;
+  background:var(--verde);
+  color:var(--blanco);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:16px;
+}
+.incluye-card__titulo{
+  font-family:var(--f-display);
+  font-weight:600;
+  font-size:1.05rem;
+  margin-bottom:8px;
+}
+.incluye-card__detalle{
+  font-size:0.92rem;
+  color:var(--tinta-suave);
+  line-height:1.5;
+}
+
+/* ================= NO INCLUYE ================= */
+.section--no-incluye{background:var(--rojo-tinte);}
+.no-incluye-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+@media (max-width:860px){
+  .no-incluye-grid{grid-template-columns:1fr;}
+}
+.no-incluye-item{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:var(--blanco);
+  border:1px solid #F1D6D2;
+  border-radius:var(--radio-chico);
+  padding:18px 20px;
+}
+.no-incluye-item__icono{
+  width:30px;height:30px;
+  flex:none;
+  border-radius:50%;
+  background:var(--rojo-tinte);
+  color:var(--rojo);
+  display:flex;align-items:center;justify-content:center;
+}
+.no-incluye-item__titulo{
+  font-family:var(--f-display);
+  font-weight:600;
+  font-size:0.98rem;
+  color:var(--tinta);
+}
+
+/* ================= OPCIONES (extensión / talleres) ================= */
+.opciones-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+@media (max-width:860px){
+  .opciones-grid{grid-template-columns:1fr;}
+}
+.opcion-card{
+  position:relative;
+  background:var(--blanco);
+  border:2px solid var(--linea);
+  border-radius:var(--radio);
+  padding:26px 22px;
+  cursor:pointer;
+  text-align:left;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  font-family:inherit;
+  color:inherit;
+}
+.opcion-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--sombra-hover);
+  border-color:var(--verde-claro);
+}
+.opcion-card:active{transform:translateY(-1px);}
+.opcion-card__num{
+  font-family:var(--f-datos);
+  font-size:0.78rem;
+  color:var(--verde);
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  margin-bottom:14px;
+  display:block;
+}
+.opcion-card__valor{
+  font-family:var(--f-datos);
+  font-weight:700;
+  font-size:1.7rem;
+  color:var(--verde-oscuro);
+  display:block;
+}
+.opcion-card__frecuencia{
+  font-size:0.85rem;
+  color:var(--tinta-suave);
+  margin-top:6px;
+  display:block;
+}
+.opcion-card__check{
+  position:absolute;
+  top:18px;
+  right:18px;
+  width:24px;height:24px;
+  border-radius:50%;
+  border:2px solid var(--linea);
+  display:flex;align-items:center;justify-content:center;
+  color:transparent;
+  transition:all .2s ease;
+}
+.opcion-card.is-selected{
+  border-color:var(--verde);
+  background:var(--verde-tinte);
+}
+.opcion-card.is-selected .opcion-card__check{
+  background:var(--verde);
+  border-color:var(--verde);
+  color:var(--blanco);
+}
+.opciones-hint{
+  margin-top:18px;
+  font-size:0.82rem;
+  color:var(--tinta-suave);
+  text-align:center;
+}
+
+/* ================= TALLER DE TAREAS ================= */
+.section--tareas{background:var(--verde-tinte);}
+.tareas-card{
+  background:var(--blanco);
+  border:1.5px dashed var(--verde-claro);
+  border-radius:20px;
+  padding:36px;
+  text-align:center;
+  max-width:560px;
+  margin:0 auto;
+}
+.tareas-card__icono{
+  width:52px;height:52px;
+  margin:0 auto 16px;
+  border-radius:50%;
+  background:var(--verde-tinte);
+  color:var(--verde);
+  display:flex;align-items:center;justify-content:center;
+}
+.tareas-card__titulo{
+  font-family:var(--f-display);
+  font-weight:600;
+  font-size:1.3rem;
+  margin-bottom:10px;
+}
+.tareas-card__texto{
+  color:var(--tinta-suave);
+  font-size:0.98rem;
+  line-height:1.6;
+}
+
+/* ================= FINAL ================= */
+.section--final{padding-bottom:90px;}
+.final__title{
+  font-size:1.5rem;
+  margin-bottom:14px;
+}
+.final__texto{
+  color:var(--tinta-suave);
+  line-height:1.65;
+  font-size:0.98rem;
+}
+
+/* ================= FOOTER ================= */
+.footer{
+  background:var(--verde-oscuro);
+  color:rgba(255,255,255,0.75);
+  text-align:center;
+  padding:44px 20px 34px;
+}
+.footer__logo{
+  height:32px;
+  margin:0 auto 16px;
+  filter:brightness(0) invert(1);
+  opacity:0.9;
+}
+.footer__texto{
+  font-size:0.92rem;
+  margin-bottom:8px;
+}
+.footer__actualizacion{
+  font-family:var(--f-datos);
+  font-size:0.76rem;
+  color:rgba(255,255,255,0.45);
+}

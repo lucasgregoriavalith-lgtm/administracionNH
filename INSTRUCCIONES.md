@@ -4,18 +4,11 @@ Esta guía está pensada para alguien **sin conocimientos de programación**. No
 
 ---
 
-## 0. Antes de nada: poné el logo real
+## 0. Logo
 
-Todavía no me pasaste el archivo de logo, así que la página tiene un logo provisorio (`assets/logo.svg`, un cuadrado rojo con un tilde).
+Ya está integrado el logo real de "Mis Manitos Nahuel Huapi" (`assets/logo.png`, con fondo transparente) en el header, el footer y el ícono de la pestaña (`assets/favicon.png`).
 
-Para poner el logo real:
-
-1. Conseguí el archivo del logo del colegio (idealmente `.png` o `.svg`, con fondo transparente).
-2. Renombralo como `logo.png` (o `logo.svg` si ya es svg).
-3. Reemplazá el archivo `assets/logo.svg` por el tuyo (misma carpeta `assets`).
-4. Si tu archivo se llama `logo.png` en vez de `logo.svg`, abrí `index.html` y cambiá las 3 líneas que dicen `assets/logo.svg` por `assets/logo.png` (son 3: el ícono de la pestaña, el header y el footer).
-
-Si me pasás el logo en otro momento, decímelo y te lo integro yo mismo, incluyendo los colores exactos del diseño.
+Si en algún momento cambia el logo, mandame el archivo nuevo y te lo reemplazo yo mismo.
 
 ---
 

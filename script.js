@@ -20,7 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     check: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`
   };
 
-  const d = window.datosColegio;
+  // valores.js declara `datosColegio` con const, que no queda colgada de
+  // window, así que se la referencia directamente.
+  const d = typeof datosColegio !== 'undefined' ? datosColegio : null;
   if (!d) {
     console.error('No se encontró datosColegio. Revisá que valores.js esté cargado antes que script.js.');
     return;

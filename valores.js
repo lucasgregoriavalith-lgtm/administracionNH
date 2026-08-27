@@ -68,7 +68,7 @@ const datosColegio = {
     {
       icono: "granja",
       titulo: "Salida de los miércoles",
-      detalle: "Salida a la Granja La Piedad. Incluye la actividad y el transporte de ida y de vuelta."
+      detalle: "Salida a la Granja La Piedra. Incluye la actividad y el transporte de ida y de vuelta."
     }
   ],
 

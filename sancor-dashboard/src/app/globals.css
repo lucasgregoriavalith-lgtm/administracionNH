@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@theme {
+  --color-marino-950: #08203a;
+  --color-marino-900: #0f2f4a;
+  --color-marino-800: #16425f;
+  --color-marino-700: #1d5e8c;
+  --color-marino-300: #8fb6d1;
+  --color-marino-100: #dbeaf4;
+  --color-marino-50: #eff6fb;
+
+  --color-naranja-700: #c65c05;
+  --color-naranja-600: #e8730c;
+  --color-naranja-500: #f2913c;
+  --color-naranja-100: #fdeedd;
+
+  --color-lienzo: #f3f5f8;
+  --color-borde: #e2e7ee;
+  --color-tinta: #16232e;
+  --color-tinta-suave: #5b6b7a;
+
+  --color-ok: #2f8f5b;
+  --color-ok-suave: #e6f4ec;
+  --color-alerta: #b45309;
+  --color-alerta-suave: #fdf1dd;
+  --color-riesgo: #c2453d;
+  --color-riesgo-suave: #fbeae9;
+
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-lienzo);
+    color: var(--color-tinta);
+    font-family: var(--font-sans);
+    font-feature-settings: "tnum" 0;
+  }
+
+  h1, h2, h3 {
+    letter-spacing: -0.015em;
+  }
+
+  /* Los números se leen mejor alineados en columnas. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  .tarjeta {
+    background-color: #fff;
+    border: 1px solid var(--color-borde);
+    border-radius: 0.875rem;
+    box-shadow: 0 1px 2px rgb(15 47 74 / 0.04);
+  }
+
+  .campo {
+    width: 100%;
+    border: 1px solid var(--color-borde);
+    border-radius: 0.5rem;
+    background-color: #fff;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.875rem;
+    color: var(--color-tinta);
+    outline: none;
+  }
+
+  .campo:focus {
+    border-color: var(--color-marino-700);
+    box-shadow: 0 0 0 3px rgb(29 94 140 / 0.15);
+  }
+
+  .etiqueta-campo {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-tinta-suave);
+    margin-bottom: 0.3rem;
+  }
+
+  .boton-primario {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-marino-900);
+    color: #fff;
+    padding: 0.55rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: background-color 0.15s ease;
+  }
+
+  .boton-primario:hover {
+    background-color: var(--color-marino-800);
+  }
+
+  .boton-primario:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .boton-secundario {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-borde);
+    background-color: #fff;
+    color: var(--color-tinta);
+    padding: 0.5rem 0.9rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .boton-secundario:hover {
+    border-color: var(--color-marino-300);
+    background-color: var(--color-marino-50);
+  }
+}

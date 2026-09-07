@@ -12,6 +12,10 @@ Si aparece un pedido de construir algo distinto —otra aplicación, otra
 herramienta, otro sitio—, no crear una subcarpeta acá. Hay que crear un
 repositorio nuevo para ese proyecto y trabajarlo ahí.
 
+Ya pasó una vez: la aplicación educativa sobre las revoluciones se construyó
+dentro de este repositorio y hubo que mudarla a
+<https://github.com/lucasgregoriavalith-lgtm/revolucione5->.
+
 Motivos: mantener historiales separados, poder dar acceso a un proyecto sin
 darlo al resto, y que cada uno se despliegue por su cuenta sin tener que
 configurar un "Root Directory" en Vercel.

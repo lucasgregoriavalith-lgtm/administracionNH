@@ -14,41 +14,79 @@
 
 .svg { display: block; width: 100%; height: auto; }
 
-.tierra {
+.territorio { cursor: pointer; }
+.territorio rect {
   fill: var(--negro-4);
   stroke: var(--negro-5);
   stroke-width: 0.35;
-  transition: fill var(--t-media);
+  transition: fill var(--t-media), stroke var(--t-media);
 }
-.tierraActiva { fill: var(--azul-profundo); stroke: var(--azul); }
-
-.marcador { cursor: pointer; }
-.marcador circle.halo {
-  fill: transparent;
+.territorio:hover rect { fill: var(--negro-5); stroke: var(--azul); }
+.territorio[data-activo="true"] rect {
+  fill: var(--azul-profundo);
   stroke: var(--azul);
-  stroke-width: 0.5;
-  opacity: 0.55;
-  transition: r var(--t-media), opacity var(--t-media);
+  stroke-width: 0.6;
 }
-.marcador circle.centro {
-  fill: var(--azul);
-  stroke: var(--negro-1);
-  stroke-width: 0.5;
-  transition: fill var(--t-media);
-}
-.marcador:hover circle.halo, .marcador[data-activo="true"] circle.halo {
-  opacity: 1;
-  stroke-width: 0.8;
-}
-.marcador[data-activo="true"] circle.centro { fill: var(--rojo); }
-.marcador[data-acento="rojo"] circle.centro { fill: var(--rojo); }
-.marcador[data-acento="rojo"] circle.halo { stroke: var(--rojo); }
 
-.etiquetaMapa {
+.etiquetaTerritorio {
+  font-family: var(--fuente-mono);
+  font-size: 2.4px;
+  font-weight: 500;
+  letter-spacing: 0.12px;
+  fill: var(--gris-texto);
+  pointer-events: none;
+}
+
+.etiquetaOceano {
+  font-family: var(--fuente-mono);
+  font-size: 2.3px;
+  letter-spacing: 0.35px;
+  fill: var(--gris-suave);
+  pointer-events: none;
+}
+
+.vinculo path {
+  stroke: var(--azul);
+  stroke-width: 0.35;
+  stroke-dasharray: 1.4 1.2;
+  opacity: 0.75;
+}
+.vinculo[data-acento="rojo"] path { stroke: var(--rojo); }
+
+.etiquetaVinculo {
   font-family: var(--fuente-mono);
   font-size: 2.1px;
+  fill: var(--gris-suave);
+  pointer-events: none;
+}
+
+.marcador { cursor: pointer; }
+.halo {
+  fill: transparent;
+  stroke: var(--azul);
+  stroke-width: 0.4;
+  opacity: 0.6;
+  transition: r var(--t-media), opacity var(--t-media);
+}
+.centro {
+  fill: var(--azul);
+  stroke: var(--negro-1);
+  stroke-width: 0.4;
+  transition: fill var(--t-media);
+}
+.marcador:hover .halo,
+.marcador[data-activo="true"] .halo { opacity: 1; stroke-width: 0.65; }
+/* El territorio elegido se marca en blanco: si se usara el rojo se
+   confundiría con el acento propio de Francia. */
+.marcador[data-activo="true"] .centro { fill: var(--blanco-puro); }
+.marcador[data-acento="rojo"] .centro { fill: var(--rojo); }
+.marcador[data-acento="rojo"] .halo { stroke: var(--rojo); }
+
+.etiquetaMarcador {
+  font-family: var(--fuente-texto);
+  font-size: 2.6px;
+  font-weight: 600;
   fill: var(--blanco);
-  letter-spacing: 0.06px;
   pointer-events: none;
 }
 

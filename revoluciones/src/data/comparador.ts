@@ -159,7 +159,7 @@ export interface RegionMapa {
   periodo: string;
   revolucion: string;
   explicacion: string;
-  /** Posicion aproximada sobre el mapa esquematico (porcentaje). */
+  /** Posicion del marcador dentro del esquema (coordenadas del viewBox). */
   x: number;
   y: number;
   acento: "azul" | "rojo" | "neutro";
@@ -175,8 +175,8 @@ export const REGIONES_MAPA: RegionMapa[] = [
     revolucion: "Independencia de Estados Unidos",
     explicacion:
       "Trece colonias británicas de la costa atlántica que se declararon independientes en 1776 y fundaron un país nuevo. La bandera de trece estrellas y trece barras representa a esas colonias fundadoras; la bandera actual tiene 50 estrellas, una por cada estado.",
-    x: 26,
-    y: 26,
+    x: 22,
+    y: 28,
     acento: "azul",
   },
   {
@@ -188,8 +188,8 @@ export const REGIONES_MAPA: RegionMapa[] = [
     revolucion: "Revolución Francesa",
     explicacion:
       "Uno de los reinos más poderosos de Europa. Entre 1789 y 1799 derribó la monarquía absoluta y proclamó derechos iguales ante la ley. La bandera tricolor nació de la escarapela revolucionaria de 1789 y fue adoptada como bandera nacional en 1794; antes de la revolución, el pabellón del rey era blanco con flores de lis.",
-    x: 50.5,
-    y: 30,
+    x: 66,
+    y: 37,
     acento: "rojo",
   },
   {
@@ -201,8 +201,8 @@ export const REGIONES_MAPA: RegionMapa[] = [
     revolucion: "Revolución Industrial",
     explicacion:
       "Aquí empezó la Revolución Industrial, gracias al carbón, el hierro, el capital del comercio y una serie de inventos textiles. Y es también el país del que se independizaron las Trece Colonias: aparece en dos de las tres historias que estudiaste. La bandera que se muestra es la del Reino de Gran Bretaña anterior a 1801, sin la cruz de San Patricio que se agregó al unirse con Irlanda.",
-    x: 45.5,
-    y: 21.5,
+    x: 68,
+    y: 16,
     acento: "azul",
   },
 ];

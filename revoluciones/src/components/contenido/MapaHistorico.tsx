@@ -5,97 +5,180 @@ import { REGIONES_MAPA } from "@/data/comparador";
 import { Bandera, type ClaveBandera } from "../Bandera";
 import estilos from "./MapaHistorico.module.css";
 
-/**
- * MAPA ESQUEMÁTICO DEL ATLÁNTICO NORTE.
- * Es un esquema, no un mapa cartográfico: las formas están simplificadas a
- * propósito para que se lea con claridad. Sirve para ubicar los tres
- * escenarios de las revoluciones estudiadas, no para medir distancias.
- */
-const CONTORNOS: { id: string; nombre: string; d: string; region?: string }[] = [
+/* ===========================================================================
+   ESQUEMA DEL ATLÁNTICO NORTE
+   No es un mapa cartográfico y no pretende serlo: es un esquema de
+   territorios y relaciones. Se eligió así por dos razones.
+   1) Un mapa dibujado a mano y muy simplificado enseña peor que un esquema
+      claro, y además puede dejar ideas equivocadas sobre tamaños y formas.
+   2) Un esquema puede mostrar algo que un mapa no muestra: la relación entre
+      los tres territorios (quién dependía de quién, quién se alió con quién),
+      que es justamente lo que el estudiante acaba de estudiar.
+   =========================================================================== */
+
+interface Territorio {
+  id: string;
+  nombre: string;
+  x: number;
+  y: number;
+  ancho: number;
+  alto: number;
+}
+
+const TERRITORIOS: Territorio[] = [
+  { id: "colonias", nombre: "América del Norte", x: 5, y: 9, ancho: 26, alto: 38 },
+  { id: "gran-bretana", nombre: "Gran Bretaña", x: 60, y: 8, ancho: 17, alto: 16 },
+  { id: "francia", nombre: "Europa", x: 57, y: 28, ancho: 36, alto: 20 },
+];
+
+/** Relaciones históricas entre los tres territorios. */
+const VINCULOS = [
   {
-    id: "america-norte",
-    nombre: "América del Norte",
-    region: "colonias",
-    d: "M4,13 L17,9 L28,11 L33,17 L30,23 L26,27 L24,33 L20,40 L15,44 L11,39 L7,31 L4,22 Z",
+    id: "dominio",
+    desde: { x: 27, y: 22 },
+    hasta: { x: 60, y: 15 },
+    etiqueta: "Dominio británico",
+    acento: "rojo" as const,
   },
-  { id: "groenlandia", nombre: "Groenlandia", d: "M34,3 L43,5 L45,11 L38,15 L33,10 Z" },
   {
-    id: "europa",
-    nombre: "Europa continental",
-    region: "francia",
-    d: "M49,13 L57,9 L63,12 L67,19 L65,27 L58,32 L52,34 L48,30 L47,24 L48,18 Z",
+    id: "alianza",
+    desde: { x: 27, y: 33 },
+    hasta: { x: 57, y: 37 },
+    etiqueta: "Alianza de 1778",
+    acento: "azul" as const,
   },
-  { id: "iberia", nombre: "Península ibérica", d: "M45,33 L50,32 L51,38 L46,39 L44,36 Z" },
-  {
-    id: "gran-bretana-isla",
-    nombre: "Gran Bretaña",
-    region: "gran-bretana",
-    d: "M44,18 L47,17 L48,21 L46,27 L44,25 L43,21 Z",
-  },
-  { id: "irlanda", nombre: "Irlanda", d: "M40.5,21 L42.8,20.5 L42.8,24.5 L40.5,24.5 Z" },
-  { id: "africa", nombre: "Norte de África", d: "M46,42 L58,41 L63,48 L58,58 L48,58 L44,50 Z" },
 ];
 
 export function MapaHistorico() {
   const [activa, setActiva] = useState<string | null>(null);
   const region = REGIONES_MAPA.find((r) => r.id === activa) ?? null;
 
+  const alternar = (id: string) => setActiva(activa === id ? null : id);
+
   return (
     <div className={estilos.disposicion}>
       <div className={estilos.lienzo}>
         <svg
-          viewBox="0 0 72 60"
+          viewBox="0 0 100 56"
           className={estilos.svg}
           role="img"
-          aria-label="Mapa esquemático del Atlántico Norte con los tres escenarios estudiados: las Trece Colonias en América del Norte, Gran Bretaña y Francia."
+          aria-label="Esquema del Atlántico Norte con los tres territorios estudiados: las Trece Colonias en América del Norte, Gran Bretaña y Francia dentro de Europa, y las relaciones entre ellos."
         >
-          {/* Retícula del océano: refuerza el lenguaje gráfico de líneas. */}
           <defs>
-            <pattern id="oceano" width="4" height="4" patternUnits="userSpaceOnUse">
-              <path d="M4,0 L0,0 L0,4" fill="none" stroke="rgba(45,107,255,0.10)" strokeWidth="0.2" />
+            <pattern id="agua" width="3" height="3" patternUnits="userSpaceOnUse">
+              <path
+                d="M0,3 L3,0"
+                fill="none"
+                stroke="rgba(45,107,255,0.16)"
+                strokeWidth="0.25"
+              />
             </pattern>
           </defs>
-          <rect width="72" height="60" fill="url(#oceano)" />
 
-          {CONTORNOS.map((c) => (
-            <path
-              key={c.id}
-              d={c.d}
-              className={`${estilos.tierra} ${
-                c.region && c.region === activa ? estilos.tierraActiva : ""
-              }`}
-            >
-              <title>{c.nombre}</title>
-            </path>
+          {/* El océano que separa los dos lados de la historia. */}
+          <rect x="33" y="4" width="22" height="48" fill="url(#agua)" />
+          <text
+            className={estilos.etiquetaOceano}
+            x="44"
+            y="51"
+            textAnchor="middle"
+          >
+            OCÉANO ATLÁNTICO
+          </text>
+
+          {/* Vínculos históricos entre territorios. */}
+          {VINCULOS.map((v) => (
+            <g key={v.id} className={estilos.vinculo} data-acento={v.acento}>
+              <path
+                d={`M${v.desde.x},${v.desde.y} C${v.desde.x + 12},${v.desde.y} ${v.hasta.x - 12},${v.hasta.y} ${v.hasta.x},${v.hasta.y}`}
+                fill="none"
+              />
+              <text
+                className={estilos.etiquetaVinculo}
+                x={44}
+                y={(v.desde.y + v.hasta.y) / 2 - 1.6}
+                textAnchor="middle"
+              >
+                {v.etiqueta}
+              </text>
+            </g>
           ))}
 
+          {/* Territorios. */}
+          {TERRITORIOS.map((t) => (
+            <g
+              key={t.id}
+              className={estilos.territorio}
+              data-activo={activa === t.id}
+              onClick={() => alternar(t.id)}
+              role="button"
+              tabIndex={0}
+              aria-pressed={activa === t.id}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  alternar(t.id);
+                }
+              }}
+            >
+              <title>{t.nombre}</title>
+              <rect x={t.x} y={t.y} width={t.ancho} height={t.alto} rx="1" />
+              <text
+                className={estilos.etiquetaTerritorio}
+                x={t.x + 2}
+                y={t.y + 4.2}
+              >
+                {t.nombre.toUpperCase()}
+              </text>
+            </g>
+          ))}
+
+          {/* Marcadores de las tres revoluciones estudiadas. */}
           {REGIONES_MAPA.map((r) => (
             <g
               key={r.id}
               className={estilos.marcador}
               data-activo={activa === r.id}
               data-acento={r.acento}
-              onClick={() => setActiva(activa === r.id ? null : r.id)}
+              onClick={() => alternar(r.id)}
               role="button"
               tabIndex={0}
               aria-pressed={activa === r.id}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
-                  setActiva(activa === r.id ? null : r.id);
+                  alternar(r.id);
                 }
               }}
             >
               <title>{r.nombre}</title>
-              <circle className="halo" cx={r.x} cy={r.y} r={activa === r.id ? 3.4 : 2.6} />
-              <circle className="centro" cx={r.x} cy={r.y} r="1.15" />
+              <circle
+                className={estilos.halo}
+                cx={r.x}
+                cy={r.y}
+                r={activa === r.id ? 4.2 : 3.2}
+              />
+              <circle className={estilos.centro} cx={r.x} cy={r.y} r="1.4" />
+              <text
+                className={estilos.etiquetaMarcador}
+                x={r.x}
+                y={r.y + 7.4}
+                textAnchor="middle"
+              >
+                {r.id === "colonias"
+                  ? "Trece Colonias"
+                  : r.id === "francia"
+                    ? "Francia"
+                    : "Gran Bretaña"}
+              </text>
             </g>
           ))}
         </svg>
+
         <p className={estilos.leyenda}>
-          Mapa esquemático: las formas están simplificadas para facilitar la
-          lectura y no representan contornos exactos. Tocá uno de los tres puntos
-          para ver la información.
+          Esquema, no mapa: los territorios se representan como bloques para que
+          se vean con claridad las relaciones entre ellos. Tocá un bloque o un
+          punto para ver la información.
         </p>
       </div>
 
@@ -117,8 +200,8 @@ export function MapaHistorico() {
         ) : (
           <div className={estilos.fichaVacia}>
             <p style={{ margin: 0 }}>
-              Elegí uno de los tres territorios marcados en el mapa para ver su
-              bandera histórica, el período y la revolución que estudiaste.
+              Elegí uno de los tres territorios para ver su bandera histórica, el
+              período y la revolución que estudiaste.
             </p>
           </div>
         )}
@@ -130,7 +213,7 @@ export function MapaHistorico() {
               type="button"
               className={estilos.chip}
               data-activo={activa === r.id}
-              onClick={() => setActiva(activa === r.id ? null : r.id)}
+              onClick={() => alternar(r.id)}
             >
               {r.nombre}
             </button>

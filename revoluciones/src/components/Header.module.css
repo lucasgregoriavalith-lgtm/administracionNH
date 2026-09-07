@@ -1,0 +1,80 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(5, 6, 8, 0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--borde);
+}
+
+.fila {
+  height: var(--alto-header);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.marca {
+  color: var(--blanco);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.marca:hover { color: var(--blanco-puro); }
+
+.derecha {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.puntaje {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--borde-fuerte);
+  border-radius: var(--radio);
+  background: var(--negro-2);
+  white-space: nowrap;
+}
+.puntajeEtiqueta {
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gris-suave);
+}
+.puntajeValor {
+  font-family: var(--fuente-mono);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--blanco);
+  font-variant-numeric: tabular-nums;
+}
+
+.estudiante {
+  font-size: 0.82rem;
+  color: var(--gris-texto);
+  max-width: 20ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.botonMenu {
+  display: none;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: 1px solid var(--borde-fuerte);
+  border-radius: var(--radio);
+  color: var(--blanco);
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+}
+.botonMenu:hover { border-color: var(--azul); }
+
+@media (max-width: 900px) {
+  .botonMenu { display: inline-flex; }
+  .estudiante { display: none; }
+}

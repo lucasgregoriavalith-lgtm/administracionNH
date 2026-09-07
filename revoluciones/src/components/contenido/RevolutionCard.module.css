@@ -1,0 +1,95 @@
+.tarjeta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+  padding: 1.6rem;
+  background: var(--negro-2);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-g);
+  color: var(--blanco);
+  text-decoration: none;
+  overflow: hidden;
+  transition: border-color var(--t-media), transform var(--t-media),
+    background var(--t-media);
+}
+.tarjeta:hover {
+  border-color: var(--azul);
+  transform: translateY(-3px);
+  background: var(--negro-3);
+}
+.tarjeta[data-acento="rojo"]:hover { border-color: var(--rojo); }
+
+/* Bloque desplazado del fondo: el motivo gráfico de "ruptura". */
+.tarjeta::before {
+  content: "";
+  position: absolute;
+  right: -46px;
+  bottom: -46px;
+  width: 150px;
+  height: 150px;
+  border: 1px solid var(--borde);
+  transform: rotate(14deg);
+  transition: transform var(--t-lenta);
+}
+.tarjeta:hover::before { transform: rotate(22deg) scale(1.06); }
+
+.fecha {
+  font-family: var(--fuente-mono);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--azul-claro);
+  margin: 0 0 0.15rem;
+  position: relative;
+}
+.tarjeta[data-acento="rojo"] .fecha { color: var(--rojo-claro); }
+
+.periodo {
+  font-family: var(--fuente-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gris-suave);
+  margin: 0 0 1rem;
+  position: relative;
+}
+
+.titulo {
+  font-family: var(--fuente-titulo);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.18;
+  margin: 0 0 0.7rem;
+  position: relative;
+}
+
+.resumen {
+  margin: 0 0 1.2rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--gris-texto);
+  position: relative;
+}
+
+.pie {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  position: relative;
+}
+
+.entrar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--fuente-titulo);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--blanco);
+}
+.tarjeta:hover .entrar svg { transform: translateX(4px); }
+.entrar svg { transition: transform var(--t-rapida); }

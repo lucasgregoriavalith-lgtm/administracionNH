@@ -1,0 +1,139 @@
+/* --- Botones -------------------------------------------------------------- */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 48px;
+  padding: 0.75rem 1.4rem;
+  border: 1px solid transparent;
+  border-radius: var(--radio);
+  font-family: var(--fuente-titulo);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: background var(--t-rapida), border-color var(--t-rapida),
+    color var(--t-rapida), transform var(--t-rapida);
+}
+.boton:active { transform: translateY(1px); }
+.boton:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+.primario { background: var(--blanco); color: var(--negro-0); }
+.primario:hover:not(:disabled) { background: var(--blanco-puro); }
+
+.acento { background: var(--rojo); color: var(--blanco-puro); }
+.acento:hover:not(:disabled) { background: #f04444; }
+
+.azul { background: var(--azul); color: var(--blanco-puro); }
+.azul:hover:not(:disabled) { background: #3d78ff; }
+
+.contorno {
+  background: transparent;
+  border-color: var(--borde-fuerte);
+  color: var(--blanco);
+}
+.contorno:hover:not(:disabled) {
+  border-color: var(--azul);
+  background: var(--azul-velo);
+}
+
+.discreto {
+  background: transparent;
+  border-color: transparent;
+  color: var(--gris-texto);
+  min-height: 40px;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.86rem;
+}
+.discreto:hover:not(:disabled) { color: var(--blanco); background: var(--negro-3); }
+
+/* --- Secciones ------------------------------------------------------------ */
+.seccion { padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
+.seccion + .seccion { border-top: 1px solid var(--borde); }
+
+.encabezado { margin-bottom: 2rem; max-width: 72ch; }
+
+/* --- Paneles y tarjetas --------------------------------------------------- */
+.panel {
+  background: var(--negro-2);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-g);
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.panelAcento {
+  border-left: 3px solid var(--azul);
+}
+.panelAcento[data-acento="rojo"] { border-left-color: var(--rojo); }
+
+.rejilla {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+}
+.rejillaAncha {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+}
+
+/* --- Paso siguiente ------------------------------------------------------- */
+.pasoSiguiente {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding: 1.5rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-g);
+  background: linear-gradient(
+    100deg,
+    var(--negro-2),
+    rgba(45, 107, 255, 0.07)
+  );
+}
+.pasoTexto { margin: 0; color: var(--gris-texto); font-size: 0.92rem; }
+
+/* --- Aviso / nota de rigor histórico -------------------------------------- */
+.aviso {
+  display: flex;
+  gap: 0.85rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--borde);
+  border-left: 3px solid var(--rojo);
+  border-radius: var(--radio);
+  background: rgba(224, 49, 49, 0.06);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--gris-texto);
+}
+.aviso p { margin: 0; }
+.aviso strong { color: var(--blanco); }
+
+.nota {
+  font-size: 0.8rem;
+  color: var(--gris-suave);
+  line-height: 1.55;
+}
+
+/* --- Cinta de datos ------------------------------------------------------- */
+.cifra {
+  font-family: var(--fuente-mono);
+  font-size: clamp(1.7rem, 5vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--blanco);
+}
+.cifraEtiqueta {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gris-suave);
+  margin-top: 0.4rem;
+}

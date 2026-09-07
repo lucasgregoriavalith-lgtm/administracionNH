@@ -1,0 +1,138 @@
+.disposicion {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.lienzo {
+  background: var(--negro-2);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-g);
+  padding: 1rem;
+}
+
+.svg { display: block; width: 100%; height: auto; }
+
+.tierra {
+  fill: var(--negro-4);
+  stroke: var(--negro-5);
+  stroke-width: 0.35;
+  transition: fill var(--t-media);
+}
+.tierraActiva { fill: var(--azul-profundo); stroke: var(--azul); }
+
+.marcador { cursor: pointer; }
+.marcador circle.halo {
+  fill: transparent;
+  stroke: var(--azul);
+  stroke-width: 0.5;
+  opacity: 0.55;
+  transition: r var(--t-media), opacity var(--t-media);
+}
+.marcador circle.centro {
+  fill: var(--azul);
+  stroke: var(--negro-1);
+  stroke-width: 0.5;
+  transition: fill var(--t-media);
+}
+.marcador:hover circle.halo, .marcador[data-activo="true"] circle.halo {
+  opacity: 1;
+  stroke-width: 0.8;
+}
+.marcador[data-activo="true"] circle.centro { fill: var(--rojo); }
+.marcador[data-acento="rojo"] circle.centro { fill: var(--rojo); }
+.marcador[data-acento="rojo"] circle.halo { stroke: var(--rojo); }
+
+.etiquetaMapa {
+  font-family: var(--fuente-mono);
+  font-size: 2.1px;
+  fill: var(--blanco);
+  letter-spacing: 0.06px;
+  pointer-events: none;
+}
+
+.leyenda {
+  margin: 0.85rem 0 0;
+  font-size: 0.74rem;
+  color: var(--gris-suave);
+  line-height: 1.5;
+}
+
+.ficha {
+  background: var(--negro-2);
+  border: 1px solid var(--borde);
+  border-left: 3px solid var(--azul);
+  border-radius: var(--radio-g);
+  padding: 1.4rem;
+  animation: aparecer var(--t-media) both;
+}
+.ficha[data-acento="rojo"] { border-left-color: var(--rojo); }
+
+.fichaVacia {
+  display: grid;
+  place-items: center;
+  min-height: 200px;
+  text-align: center;
+  color: var(--gris-suave);
+  font-size: 0.9rem;
+  background: var(--negro-2);
+  border: 1px dashed var(--borde-fuerte);
+  border-radius: var(--radio-g);
+  padding: 1.5rem;
+}
+
+.fichaNombre {
+  font-family: var(--fuente-titulo);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0.85rem 0 0.2rem;
+  color: var(--blanco);
+}
+.fichaHistorico {
+  font-size: 0.82rem;
+  color: var(--gris-suave);
+  margin: 0 0 0.9rem;
+}
+.fichaDato {
+  font-family: var(--fuente-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--azul-claro);
+  margin: 0 0 0.2rem;
+}
+.fichaValor { margin: 0 0 0.9rem; font-size: 0.93rem; color: var(--blanco); }
+.fichaTexto {
+  margin: 0;
+  font-size: 0.89rem;
+  line-height: 1.65;
+  color: var(--gris-texto);
+}
+
+.botonera {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.chip {
+  padding: 0.45rem 0.85rem;
+  background: var(--negro-3);
+  border: 1px solid var(--borde-fuerte);
+  border-radius: 999px;
+  color: var(--gris-texto);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: border-color var(--t-rapida), color var(--t-rapida);
+}
+.chip:hover { border-color: var(--azul); color: var(--blanco); }
+.chip[data-activo="true"] {
+  border-color: var(--rojo);
+  color: var(--blanco);
+  background: var(--rojo-velo);
+}
+
+@media (max-width: 800px) {
+  .disposicion { grid-template-columns: 1fr; }
+}
